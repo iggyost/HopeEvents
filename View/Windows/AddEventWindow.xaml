@@ -1,0 +1,202 @@
+﻿<Window x:Class="HopeEvents.View.Windows.AddEventWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HopeEvents.View.Windows"
+        mc:Ignorable="d"
+        Title="AddEventWindow" 
+        
+        Width="1600" Height="1000" 
+        
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None"
+        AllowsTransparency="True" 
+        Background="White"
+        ResizeMode="NoResize">
+    <Window.Clip>
+        <RectangleGeometry Rect="0,0,1600,1000"
+                           RadiusX="24"
+                           RadiusY="24"></RectangleGeometry>
+    </Window.Clip>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <RadialGradientBrush Center="0.5,0.5" GradientOrigin="1,0" Opacity="1" RadiusX="0.9" RadiusY="0.7" SpreadMethod="Pad" MappingMode="RelativeToBoundingBox">
+                <GradientStop Color="#7F015CA4"/>
+                <GradientStop Color="#7F005B8A" Offset="1"/>
+                <GradientStop Color="#7F145298" Offset="0.294"/>
+                <GradientStop Color="#7F1E57C5" Offset="0.515"/>
+                <GradientStop Color="#7F166079" Offset="0.755"/>
+            </RadialGradientBrush>
+        </Grid.Background>
+        <Grid Background="#FF397CFF">
+            <TextBlock Style="{StaticResource DefaultTblStyle}"  FontSize="32"
+                       Foreground="White"
+                       FontWeight="Regular"
+                       HorizontalAlignment="Left"
+                       Margin="48 0 0 0"
+                       VerticalAlignment="Center" 
+                       FontFamily="Golos Text Black">Hope</TextBlock>
+            <TextBlock Style="{StaticResource DefaultTblStyle}"  HorizontalAlignment="Center"
+                       VerticalAlignment="Center">Добавление мероприятия</TextBlock>
+            <StackPanel Orientation="Horizontal"
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0 0 16 0">
+                <Button Name="MinimizeBtn"
+                        Style="{StaticResource stateWindowBtn}" Click="MinimizeBtn_Click">
+                    <Image Source="/Resources/Images/icons8-subtract-64.png" ></Image>
+                </Button>
+                <Button Name="CloseBtn"
+                        Style="{StaticResource stateWindowBtn}"
+                        Margin="16 0 0 0" Click="CloseBtn_Click">
+                    <Image Source="/Resources/Images/icons8-close-48.png" Height="24" VerticalAlignment="Top"></Image>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Border Width="1472"
+                Height="832" 
+                Grid.Row="1"
+                Background="#26000000"
+                CornerRadius="32"
+                VerticalAlignment="Top"
+                Margin="0 16 0 0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="528"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="528"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Border Background="#26000000"
+                            Margin="16"
+                            CornerRadius="32">
+                        <Grid>
+                            <Image Name="newImage"
+                                   Stretch="Fill"></Image>
+                            <Button Style="{StaticResource stateWindowBtn}"
+                                Width="128"
+                                Height="128"
+                                Name="AddImageBtn" Click="AddImageBtn_Click">
+                                <Image Source="/Resources/Images/icons8-plus-64.png"
+                                   Stretch="Fill"></Image>
+                            </Button>
+                            <Button Style="{StaticResource stateWindowBtn}"
+                                Width="128"
+                                Height="128"
+                                Name="EditImageBtn" Click="EditImageBtn_Click">
+                                <Image Source="/Resources/Images/icons8-plus-64.png"
+                                   Stretch="Fill"></Image>
+                            </Button>
+                        </Grid>
+                    </Border>
+                    <StackPanel Grid.Row="1"
+                                Margin="16 16 16 0">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Margin="4 0 4 0">
+                                    <TextBlock Style="{StaticResource DefaultTblStyle}" >Город</TextBlock>
+                                    <TextBox FontSize="20"
+                                             Name="AddCityTb" TextChanged="AddCityTb_TextChanged"></TextBox>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1"
+                                            Margin="4 0 4 0">
+                                    <TextBlock Style="{StaticResource DefaultTblStyle}" >Метро</TextBlock>
+                                    <TextBox FontSize="20"
+                                             Name="AddMetroTb" TextChanged="AddMetroTb_TextChanged"></TextBox>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Margin="4 16 4 0">
+                            <TextBlock Style="{StaticResource DefaultTblStyle}" >Улица</TextBlock>
+                            <TextBox FontSize="20"
+                                     Name="AddStreetTb" TextChanged="AddStreetTb_TextChanged"></TextBox>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource DefaultTblStyle}"  FontSize="18"
+                                       Margin="4"
+                                       Name="validationLocationTbl"
+                                       TextWrapping="Wrap"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="96"></RowDefinition>
+                        <RowDefinition Height="64"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="96"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel VerticalAlignment="Bottom"
+                                HorizontalAlignment="Center">
+                        <TextBlock Style="{StaticResource DefaultTblStyle}" >Название:</TextBlock>
+                        <TextBox Width="512"
+                                 FontSize="20"
+                                 Name="AddTitleTb" TextChanged="AddTitleTb_TextChanged"></TextBox>
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource DefaultTblStyle}"  HorizontalAlignment="Center"
+                               VerticalAlignment="Top"
+                               Grid.Row="1"
+                               FontSize="18"
+                               Name="ValidationTitleTbl"></TextBlock>
+                    <StackPanel Grid.Row="2">
+                        <TextBlock Style="{StaticResource DefaultTblStyle}" >Описание</TextBlock>
+                        <TextBox Height="390"
+                                 Name="AddDescriptionTb"
+                                 FontSize="20"
+                                 TextWrapping="Wrap"
+                                 HorizontalScrollBarVisibility="Visible"
+                                 Margin="0 0 16 0" TextChanged="AddDescriptionTb_TextChanged"></TextBox>
+                        <TextBlock Style="{StaticResource DefaultTblStyle}"  FontSize="18"
+                                   Name="validationDescriptionTbl"></TextBlock>
+                        <TextBlock Style="{StaticResource DefaultTblStyle}"  Margin="0 8 0 0">Дата проведения:</TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <DatePicker FontSize="28"
+                                        FontFamily="Golos" 
+                                        Name="AddDateOfEventDP"
+                                        BorderBrush="{x:Null}"
+                                        Width="256"
+                                        HorizontalAlignment="Left"/>
+                            <ComboBox Margin="32 0"
+                                      FontSize="24"
+                                      Width="350"
+                                      Name="DisabilitesCb"
+                                      DisplayMemberPath="name">
+                            </ComboBox>
+                        </StackPanel>
+                    </StackPanel>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Name="AddEventBtn" Click="AddEventBtn_Click">Добавить</Button>
+                        <Button VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Name="EditEventBtn" Click="EditEventBtn_Click">Изменить</Button>
+                        <Button Grid.Column="2"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Name="CancelBtn" Click="CancelBtn_Click">Отмена</Button>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
+

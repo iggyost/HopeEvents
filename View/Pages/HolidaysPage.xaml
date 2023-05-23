@@ -1,0 +1,224 @@
+﻿<Page x:Class="HopeEvents.View.Pages.HolidaysPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HopeEvents.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1032" d:DesignWidth="1600"
+      Title="HolidaysPage" Loaded="Page_Loaded">
+    <Grid Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="512"></ColumnDefinition>
+                <ColumnDefinition Width="512"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="24"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="24"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="1">
+                <TextBlock Style="{StaticResource DefaultTblStyle}"  HorizontalAlignment="Left"
+                       Margin="64 0 0 0"
+                       VerticalAlignment="Center"
+                       FontSize="38"
+                       FontWeight="Medium">Праздники</TextBlock>
+                <Button Style="{StaticResource stateWindowBtn}"
+                        Name="AddEventButton"
+                        HorizontalAlignment="Center"
+                        Width="48"
+                        Height="48"
+                        Margin="32 0" Click="AddEventButton_Click">
+                    <Image Source="/Resources/Images/icons8-plus-64.png"
+                       Stretch="Fill"></Image>
+                </Button>
+            </StackPanel>
+            <TextBox Grid.Row="1"
+                     Grid.Column="1"
+                     Name="SearchFieldTb"
+                     Style="{StaticResource SearchFieldTb}" TextChanged="SearchFieldTb_TextChanged">
+                <TextBox.Effect>
+                    <DropShadowEffect Opacity="0.25">
+                    </DropShadowEffect>
+                </TextBox.Effect>
+            </TextBox>
+            <ComboBox Grid.Column="2"
+                      Grid.Row="1"
+                      Margin="16"
+                      FontSize="24"
+                      Foreground="Black"
+                      Name="FilterCb"
+                      DisplayMemberPath="name" SelectionChanged="FilterCb_SelectionChanged"></ComboBox>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="64"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="64"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="16"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="64"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <ListView Grid.Row="1"
+                      Grid.Column="1"
+                      Name="HolidaysLv" 
+                      Background="{x:Null}" 
+                      BorderBrush="{x:Null}"
+                      VirtualizingPanel.ScrollUnit="Pixel">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Width="1440"
+                                Height="700" 
+                                Grid.Row="1"
+                                Background="#26000000"
+                                CornerRadius="32"
+                                VerticalAlignment="Top"
+                                Margin="0 16 0 0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="528"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Horizontal"
+                                            Grid.Column="1"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Top"
+                                            Margin="0 16 16 0"
+                                            Name="EditDeleteBtns"
+                                            Tag="{Binding user_id}" Loaded="EditDeleteBtns_Loaded">
+                                    <Button Style="{StaticResource stateWindowBtn}"
+                                            Tag="{Binding id}"
+                                            Width="48"
+                                            Height="48"
+                                            Name="EditEventBtn" Click="EditEventBtn_Click">
+                                        <Image Source="/Resources/Images/icons8-edit-96.png"
+                                               Stretch="Fill"></Image>
+                                    </Button>
+                                    <Button Style="{StaticResource stateWindowBtn}"
+                                            Tag="{Binding id}"
+                                            Width="48"
+                                            Height="48"
+                                            Margin="24 0 0 0"
+                                            Name="DeleteEventBtn" 
+                                            Click="DeleteEventBtn_Click">
+                                        <Image Source="/Resources/Images/icons8-trash-96.png"
+                                               Stretch="Fill"></Image>
+                                    </Button>
+                                </StackPanel>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="528"></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Border Background="#26424242"
+                                            Margin="16"
+                                            CornerRadius="32">
+                                        <Image Name="newImage" 
+                                               Source="{Binding image_of_event, IsAsync=True}"
+                                               RenderOptions.BitmapScalingMode="LowQuality"
+                                               Width="512"
+                                               Height="512"></Image>
+                                    </Border>
+                                    <StackPanel Grid.Row="1"
+                                                Margin="16 16 16 0">
+                                        <StackPanel>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel Margin="4 0 4 0">
+                                                    <TextBlock Style="{StaticResource DefaultTblStyle}" >Город</TextBlock>
+                                                    <TextBlock Style="{StaticResource DefaultTblStyle}"  Text="{Binding city}"></TextBlock>
+                                                </StackPanel>
+                                                <StackPanel Grid.Column="1"
+                                                            Margin="4 0 4 0">
+                                                    <TextBlock Style="{StaticResource DefaultTblStyle}" >Метро</TextBlock>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Image Source="/Resources/Images/icons8-subway-96.png"
+                                                               Width="32"
+                                                               Height="32"
+                                                               RenderOptions.BitmapScalingMode="LowQuality"></Image>
+                                                        <TextBlock Style="{StaticResource DefaultTblStyle}"  Text="{Binding metro}"
+                                                                   VerticalAlignment="Center"></TextBlock>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Grid>
+                                        </StackPanel>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Margin="4 16 4 0">
+                                                <TextBlock Style="{StaticResource DefaultTblStyle}">Адрес</TextBlock>
+                                                <TextBlock Style="{StaticResource DefaultTblStyle}"  Text="{Binding street}"></TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1"
+                                                        Margin="4 16 4 0">
+                                                <TextBlock Style="{StaticResource DefaultTblStyle}">Для кого:</TextBlock>
+                                                <TextBlock Name="disabilityTbl"
+                                                       Tag="{Binding id}"
+                                                       Style="{StaticResource DefaultTblStyle}" Loaded="disabilityTbl_Loaded">fsdfdsfdsadas</TextBlock>
+                                            </StackPanel>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="96"></RowDefinition>
+                                        <RowDefinition Height="64"></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition Height="96"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel VerticalAlignment="Bottom"
+                                                HorizontalAlignment="Center">
+                                        <TextBlock Style="{StaticResource DefaultTblStyle}"  Text="{Binding title}"
+                                                   Margin="0 0 64 16"
+                                                   FontWeight="SemiBold"
+                                                   FontSize="28"></TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="2">
+                                        <TextBlock Style="{StaticResource DefaultTblStyle}" >Описание:</TextBlock>
+                                        <TextBlock Style="{StaticResource DefaultTblStyle}"  Text="{Binding description}"
+                                                   FontSize="20"
+                                                   Height="346"
+                                                   TextWrapping="Wrap"
+                                                   Margin="0 8 32 0"></TextBlock>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition></RowDefinition>
+                                                <RowDefinition></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Style="{StaticResource DefaultTblStyle}" >Дата проведения:</TextBlock>
+                                            <TextBlock Style="{StaticResource DefaultTblStyle}"  Text="{Binding date_of_event, StringFormat={} dd.MM.yyyy}"
+                                                       Grid.Row="1"></TextBlock>
+                                            <TextBlock Style="{StaticResource DefaultTblStyle}"  Grid.Column="1">Дата публикации:</TextBlock>
+                                            <TextBlock Style="{StaticResource DefaultTblStyle}"  Text="{Binding date_of_publication, StringFormat={} dd.MM.yyyy}"
+                                                       Grid.Row="1"
+                                                       Grid.Column="1"></TextBlock>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+</Page>
